@@ -1,106 +1,76 @@
 import React from "react";
-import Reveal from "../components/Reveal";
+import { Link } from "react-router-dom";
 
 export default function About() {
-  const features = [
-    "食譜清單：搜尋 / 標籤 / 排序 / 分頁",
-    "收藏：一鍵加入或移除，專屬收藏頁",
-    "筆記：新增 / 編輯 / 刪除，支援匯出",
-    "圖片燈箱 / 評分 / 分享 / 列印",
-    "深色主題、Lazy-load、骨架載入",
-    "零套件互動動畫（Carousel / Reveal / CuteBand）",
-  ];
-  const timeline = [
-    {
-      date: "2025-07",
-      title: "版型初版",
-      desc: "建立路由、Navbar/Footer、首頁雛形。",
-    },
-    {
-      date: "2025-07",
-      title: "資料層與筆記",
-      desc: "RecipeProvider + 筆記 CRUD + LocalStorage。",
-    },
-    {
-      date: "2025-08",
-      title: "互動與動畫",
-      desc: "輪播、Reveal、收藏/筆記/關於動畫化。",
-    },
-  ];
-
   return (
-    <div className="space-y-12 max-w-4xl mx-auto">
+    <main className="space-y-16">
       {/* Hero */}
-      <Reveal>
-        <section className="relative rounded-2xl p-10 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 overflow-hidden">
-          <div className="absolute -top-6 -left-6 w-40 h-40 blur-3xl rounded-full bg-indigo-200/60 dark:bg-indigo-500/20" />
-          <div className="absolute -bottom-8 -right-8 text-6xl select-none">
-            🍳
-          </div>
-          <h1 className="text-3xl font-extrabold mb-2">關於「料理筆記」</h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            我們希望用最直覺的方式，幫你快速管理食譜、收藏靈感，並記錄每次下廚的小成功。
+      <section className="bg-gradient-to-b from-blue-50 to-transparent dark:from-gray-900">
+        <div className="page py-16 text-center space-y-4">
+          <h1 className="text-4xl font-extrabold">關於料理筆記</h1>
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            我們相信「會做飯的人更自由」。料理筆記，把靈感、食材、步驟與回想，全部收進一個地方。
           </p>
-        </section>
-      </Reveal>
+          <div className="flex gap-3 justify-center">
+            <Link to="/recipes" className="btn-primary">開始探索</Link>
+            <a href="https://github.com" target="_blank" className="btn-secondary" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </section>
 
-      {/* 功能卡片 */}
-      <Reveal>
-        <section>
-          <h2 className="text-2xl font-bold mb-3">目前功能</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {features.map((t, i) => (
-              <Reveal key={t} delay={i * 60}>
-                <div className="border rounded-xl p-4 bg-white dark:bg-gray-800 dark:border-gray-700 hover-lift">
-                  {t}
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-      </Reveal>
+      {/* 特色 */}
+      <section className="page">
+        <div className="grid md:grid-cols-3 gap-6">
+          <Feature icon="🧠" title="靈感不流失" text="收藏、標籤、筆記連動，回顧更快。" />
+          <Feature icon="🧂" title="食材有條理" text="食材／調味分欄，一鍵複製與分享。" />
+          <Feature icon="📱" title="跨裝置" text="PWA 友善：在家裡與超市都能打開。" />
+        </div>
+      </section>
 
-      {/* 技術與理念 */}
-      <Reveal>
-        <section className="grid md:grid-cols-2 gap-6">
-          <div className="border rounded-xl p-6 bg-white dark:bg-gray-800 dark:border-gray-700">
-            <h3 className="text-xl font-semibold mb-2">技術棧</h3>
-            <ul className="list-disc ml-5 space-y-1 text-gray-700 dark:text-gray-300">
-              <li>Vite + React 18 + React Router 6</li>
-              <li>Tailwind CSS（class-based 暗黑模式）</li>
-              <li>LocalStorage 狀態持久化（可替換成 API / Firebase）</li>
-            </ul>
-          </div>
-          <div className="border rounded-xl p-6 bg-white dark:bg-gray-800 dark:border-gray-700">
-            <h3 className="text-xl font-semibold mb-2">我們的理念</h3>
-            <ul className="list-disc ml-5 space-y-1 text-gray-700 dark:text-gray-300">
-              <li>輕、快、好用：開箱即可記錄與搜尋。</li>
-              <li>資料在你手上：先本機，隨時可接後端。</li>
-              <li>注重日常：保留必要功能與漂亮版面。</li>
-            </ul>
-          </div>
-        </section>
-      </Reveal>
+      {/* 里程碑（點不會擋字，時間線靠左） */}
+      <section className="page">
+        <h2 className="text-2xl font-bold mb-6">里程碑</h2>
+        <ol className="relative border-l border-blue-200 dark:border-blue-900/50 pl-6 space-y-8">
+          <Milestone when="2025/06" title="起心動念" text="把散落在手機的食譜整合成網站 Side Project。" />
+          <Milestone when="2025/07" title="料理卡片完成" text="統一 1:1 圖片比例、支援收藏與分享。" />
+          <Milestone when="2025/08" title="筆記 & 富文字編輯" text="記錄每次改良，輸出 JSON 與 QRCode 分享。" />
+        </ol>
+      </section>
 
-      {/* 時間線 */}
-      <Reveal>
-        <section>
-          <h2 className="text-2xl font-bold mb-3">里程碑</h2>
-          <div className="relative pl-6">
-            <div className="absolute left-2 top-0 bottom-0 w-px bg-gray-200 dark:bg-gray-700" />
-            {timeline.map((m, i) => (
-              <Reveal key={m.title} delay={i * 80}>
-                <div className="relative mb-6">
-                  <div className="absolute -left-3.5 top-1 w-3 h-3 rounded-full bg-blue-500" />
-                  <div className="text-sm text-gray-500">{m.date}</div>
-                  <div className="text-lg font-semibold">{m.title}</div>
-                  <p className="text-gray-700 dark:text-gray-300">{m.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-      </Reveal>
+      {/* 結語 */}
+      <section className="page pb-16">
+        <div className="card p-6 text-center">
+          <p className="text-gray-600 dark:text-gray-300">
+            你也想一起讓料理更好玩嗎？歡迎到
+            <a className="text-blue-600 hover:underline" href="https://github.com" target="_blank" rel="noreferrer"> GitHub </a>
+            提 issue / PR！
+          </p>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function Feature({ icon, title, text }) {
+  return (
+    <div className="card p-6 hover-lift">
+      <div className="text-3xl">{icon}</div>
+      <h3 className="mt-3 font-semibold text-lg">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-300">{text}</p>
     </div>
   );
 }
+
+function Milestone({ when, title, text }) {
+  return (
+    <li className="relative">
+      <span className="absolute -left-[33px] top-1 h-4 w-4 rounded-full bg-blue-500 ring-4 ring-blue-100 dark:ring-blue-900/40" />
+      <div className="card p-4">
+        <div className="text-sm text-gray-500 dark:text-gray-400">{when}</div>
+        <div className="font-semibold">{title}</div>
+        <div className="text-gray-600 dark:text-gray-300">{text}</div>
+      </div>
+    </li>
+  );
+}
+

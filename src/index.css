@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'react-quill/dist/quill.snow.css';
-
+@import "react-quill/dist/quill.snow.css";
 
 a {
   text-decoration: none;
@@ -128,17 +127,31 @@ a {
 
 /* 輕量通用動畫與特效 */
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 .shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
   background-size: 200% 100%;
   animation: shimmer 1.2s linear infinite;
 }
 
-@keyframes wiggle { 0%,100% { transform: rotate(0) } 50% { transform: rotate(1.5deg) } }
-.wiggle:hover { animation: wiggle .35s ease-in-out; }
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+.wiggle:hover {
+  animation: wiggle 0.35s ease-in-out;
+}
 
 /* ==== 表單統一樣式 ==== */
 @layer components {
@@ -162,12 +175,18 @@ a {
            bg-green-600 text-white hover:bg-green-700 transition
            focus:outline-none focus:ring-2 focus:ring-green-500/60;
   }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-1 rounded-lg px-3 py-1.5 border bg-white/70 dark:bg-gray-900/50 dark:border-gray-700 hover:bg-white transition;
+  }
 
   .page {
     @apply container mx-auto;
   }
 
-   /* 區塊的通用卡片與小動畫，讓畫面更有層次 */
+  /* 區塊的通用卡片與小動畫，讓畫面更有層次 */
   .card {
     @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-card;
   }
@@ -187,69 +206,89 @@ a {
 
 /* 某些瀏覽器（特別是 Windows）對 option 的樣式繼承較保守，額外處理 */
 @layer base {
-  .dark option { color: #f3f4f6; background-color: #1f2937; } /* text-gray-100 / bg-gray-800 */
+  .dark option {
+    color: #f3f4f6;
+    background-color: #1f2937;
+  } /* text-gray-100 / bg-gray-800 */
 }
 
 /* 建議加上 color-scheme，讓原生控件顏色更貼近深色 */
-:root { color-scheme: light dark; }
+:root {
+  color-scheme: light dark;
+}
 
 /* 勾勾食材列表 */
-.ingredient-list .ingredient-bullet{
-  position:absolute; left:0.25rem; top:0.25rem;
-  width:1.35rem; height:1.35rem; line-height:1.35rem;
-  text-align:center; border-radius:9999px;
-  background:rgba(34,197,94,.12); /* green-500/12 */
-  color:#22c55e; font-size:0.85rem; font-weight:700;
+.ingredient-list .ingredient-bullet {
+  position: absolute;
+  left: 0.25rem;
+  top: 0.25rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  line-height: 1.35rem;
+  text-align: center;
+  border-radius: 9999px;
+  background: rgba(34, 197, 94, 0.12); /* green-500/12 */
+  color: #22c55e;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 /* 步驟時間線（左側數字圓點 + 直線） */
-.step-item{ position:relative; }
-.step-item::before{
-  content:""; position:absolute; left:14px; top:1.75rem; bottom:-1rem;
-  width:2px; background:rgba(148,163,184,.4); /* slate-400/40 */
+.step-item {
+  position: relative;
 }
-.step-item:last-child::before{ display:none; }
-.step-dot{
-  width:28px; height:28px; border-radius:9999px;
-  display:grid; place-items:center; font-weight:700;
-  background:linear-gradient(180deg,#93c5fd 0%,#60a5fa 100%);
-  color:white; box-shadow:0 6px 16px rgba(59,130,246,.35);
+.step-item::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 1.75rem;
+  bottom: -1rem;
+  width: 2px;
+  background: rgba(148, 163, 184, 0.4); /* slate-400/40 */
+}
+.step-item:last-child::before {
+  display: none;
+}
+.step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: linear-gradient(180deg, #93c5fd 0%, #60a5fa 100%);
+  color: white;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
 }
 
 /* 印出時隱藏不必要元素（可選） */
 @media print {
-  .no-print { display: none !important; }
+  .no-print {
+    display: none !important;
+  }
 }
 /* 小膠囊在深色環境更清楚（StatPill 已有 base 樣式，這是微調） */
-@media (prefers-color-scheme: dark){
-  .backdrop-blur { backdrop-filter: blur(8px); }
-}
-
-
-@import 'react-quill/dist/quill.snow.css';
-
-@layer components{
-  .form-field{@apply w-full rounded-lg border px-3 py-2 bg-white text-gray-900 placeholder-gray-400 border-gray-300
-    focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:border-blue-500
-    dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400 dark:border-gray-700;}
-  .form-label{@apply block mb-1 text-sm font-medium text-gray-700 dark:text-gray-200;}
-  .btn-secondary{@apply inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition;}
-  .btn-ghost{@apply inline-flex items-center gap-1 rounded-lg px-3 py-1.5 border bg-white/70 dark:bg-gray-900/50 dark:border-gray-700 hover:bg-white transition;}
+@media (prefers-color-scheme: dark) {
+  .backdrop-blur {
+    backdrop-filter: blur(8px);
+  }
 }
 
 
 /* 讓整體背景有一點層次 */
 .edge-fade {
   background:
-    radial-gradient(60% 50% at 0% 50%, rgba(0,0,0,.06), transparent 60%) left center / 40% 100% no-repeat,
-    radial-gradient(60% 50% at 100% 50%, rgba(0,0,0,.06), transparent 60%) right center / 40% 100% no-repeat;
+    radial-gradient(60% 50% at 0% 50%, rgba(0, 0, 0, 0.06), transparent 60%) left center / 40% 100% no-repeat,
+    radial-gradient(60% 50% at 100% 50%, rgba(0, 0, 0, 0.06), transparent 60%) right center / 40% 100% no-repeat;
 }
 
 /* 小卡片微浮起（你頁面很多卡片用得到） */
 .hover-lift {
-  transition: transform .2s ease, box-shadow .2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .hover-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }

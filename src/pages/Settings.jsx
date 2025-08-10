@@ -62,7 +62,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
+    <div className="page max-w-3xl space-y-8">
       <h1 className="text-3xl font-extrabold">資料與備份</h1>
       <p className="text-gray-600 dark:text-gray-300">
         你可以在此匯出／匯入本機資料（食譜、筆記、收藏），或一鍵清除以還原預設

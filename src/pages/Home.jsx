@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { RecipeContext } from "../context/RecipeProvider";
 import RecipeCard from "../components/RecipeCard";
 import SectionHeader from "../components/SectionHeader";
+import AniCounter from "../components/AniCounter";
 
 // 新增的元件
 import Carousel from "../components/Carousel";
@@ -241,6 +242,25 @@ export default function Home() {
           )}
         </section>
       </Reveal>
+    </div>
+  );
+}
+function Stat({ num, label }) {
+  return (
+    <div className="card p-4 text-center">
+      <div className="text-3xl font-extrabold">
+        <AniCounter value={num} duration={800} />+
+      </div>
+      <div className="text-sm text-gray-500 dark:text-gray-400">{label}</div>
+    </div>
+  );
+}
+
+/** 小巧動畫圖示（不影響效能） */
+function CuteFloat() {
+  return (
+    <div className="pointer-events-none absolute -right-2 -top-3 select-none text-4xl animate-bounce">
+      🍳
     </div>
   );
 }

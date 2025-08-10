@@ -19,11 +19,13 @@ recipe-notes/
     │       └── salad.jpg            # 凱撒沙拉
     ├── components/
     │   ├── AniCounter.jsx
+    │   ├── AspectBox.jsx
     │   ├── Carousel.jsx
     │   ├── Container.jsx
     │   ├── CuteBand.jsx
     │   ├── CategoryCard.jsx
     │   ├── DataReset.jsx
+    │   ├── EmptyState.jsx
     │   ├── ErrorBoundary.jsx
     │   ├── FavoriteButton.jsx
     │   ├── FloatingIcons.jsx

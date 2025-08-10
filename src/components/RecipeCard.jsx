@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import FavoriteButton from './FavoriteButton';
 import StatPill from './StatPill';              // 若你有加資訊膠囊
 import saladFallback from '../assets/images/salad.jpg';
+import AspectBox from "./AspectBox";
 
 export default function RecipeCard({ recipe, aspect = '16/9' }) {
   // 防呆：若沒傳 recipe，直接不要渲染，避免 ReferenceError
@@ -14,8 +15,9 @@ export default function RecipeCard({ recipe, aspect = '16/9' }) {
 
   return (
     <article className="border rounded-xl overflow-hidden bg-white dark:bg-gray-800 dark:border-gray-700 hover:shadow hover:-translate-y-0.5 transition">
-      <div className={`relative overflow-hidden ${aspectClass} `}>
+      <div className={`relative  ${aspectClass} `}>
         <Link to={`/recipes/${recipe.id}`} className="block">
+         <AspectBox className="border border-white/40 dark:border-gray-700">
           <img
             loading="lazy"
             src={recipe.image}
@@ -23,6 +25,7 @@ export default function RecipeCard({ recipe, aspect = '16/9' }) {
             onError={(e)=>{ e.currentTarget.onerror=null; e.currentTarget.src = saladFallback; }}
             className="w-full h-full object-cover"
           />
+          </AspectBox>
         </Link>
 
         {isNew && (
