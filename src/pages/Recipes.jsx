@@ -71,7 +71,7 @@ export default function Recipes() {
   const onPageChange = (p) => updateParam({ page: p });
 
   return (
-    <div className="space-y-8">
+    <div className="page space-y-8">
       {/* 頂部：標題＋搜尋＋排序 */}
       <Reveal>
         <div className="flex items-end justify-between gap-3 flex-wrap">

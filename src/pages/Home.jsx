@@ -55,7 +55,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="space-y-16">
+    <div className="page space-y-16">
       <section className="grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-center">
         {/* 左：1:1 正方形輪播（最大 500px） */}
         <div className="w-full max-w-[500px] justify-self-center lg:justify-self-start">

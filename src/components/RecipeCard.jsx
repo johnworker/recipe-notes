@@ -14,7 +14,7 @@ export default function RecipeCard({ recipe, aspect = '16/9' }) {
 
   return (
     <article className="border rounded-xl overflow-hidden bg-white dark:bg-gray-800 dark:border-gray-700 hover:shadow hover:-translate-y-0.5 transition">
-      <div className={`relative overflow-hidden ${aspectClass}`}>
+      <div className={`relative overflow-hidden ${aspectClass} `}>
         <Link to={`/recipes/${recipe.id}`} className="block">
           <img
             loading="lazy"

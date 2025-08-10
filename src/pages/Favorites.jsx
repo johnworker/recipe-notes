@@ -31,7 +31,7 @@ export default function Favorites() {
   }, [favRecipes]);
 
   return (
-    <div className="space-y-8">
+    <div className="page space-y-8">
       <Reveal>
         <div className="flex items-end justify-between gap-3 flex-wrap">
           <div>

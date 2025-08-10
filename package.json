@@ -9,6 +9,7 @@
   "dependencies": {
     "lucide-react": "^0.539.0",
     "qrcode.react": "^4.2.0",
+    "quill": "^2.0.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-hot-toast": "^2.5.2",

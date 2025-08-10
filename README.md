@@ -20,6 +20,7 @@ recipe-notes/
     ├── components/
     │   ├── AniCounter.jsx
     │   ├── Carousel.jsx
+    │   ├── Container.jsx
     │   ├── CuteBand.jsx
     │   ├── CategoryCard.jsx
     │   ├── DataReset.jsx
@@ -44,16 +45,26 @@ recipe-notes/
     │   ├── IngredientList.jsx
     │   ├── StepTimeline.jsx
     │   ├── StatGrid.jsx
+    │   ├── ProtectedRoute.jsx      # 登入保護路由
+    │   ├── ToastHost.jsx           # 放 Toaster
+    │   ├── ClipboardButton.jsx     # 一鍵複製連結
+    │   ├── QRCodeButton.jsx        # 彈 QR Code 分享
     │   └── Footer.jsx
     ├── context/
+    │   ├── AuthProvider.jsx        # 假登入（localStorage 持久）
+    │   ├── UiStore.jsx             # UI/標籤選擇/瀏覽歷史
     │   └── RecipeProvider.jsx       ← **新增更多 recipes 資料**
     ├── hooks/
     │   └── useLocalStorage.js
     ├── pages/
+            └── admin/
+                └── RecipeForm.jsx  # 新增/編輯食譜（含 Rich Text 步驟）
     │   ├── About.jsx
     │   ├── BackToTop.jsx
+    │   ├── Categories.jsx           # 分類/標籤清單 & 篩選
     │   ├── Favorites.jsx
     │   ├── Home.jsx                 ← **調整加入精選區塊**
+    │   ├── Login.jsx                # 登入頁
     │   ├── NotFound.jsx
     │   ├── NoteEditor.jsx
     │   ├── Notes.jsx

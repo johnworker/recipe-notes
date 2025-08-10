@@ -28,7 +28,7 @@ export default function Notes() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="page space-y-6">
       <Reveal>
         <div className="flex items-end justify-between gap-4 flex-wrap">
           <div>
