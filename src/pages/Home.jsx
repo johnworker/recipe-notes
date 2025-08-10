@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <div className="page space-y-16">
-      <section className="grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-center">
+      <section className="grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-center bg-gradient-to-b from-blue-50/40 to-transparent dark:from-gray-900/40 rounded-3xl p-6">
         {/* 左：1:1 正方形輪播（最大 500px） */}
         <div className="w-full max-w-[500px] justify-self-center lg:justify-self-start">
           <Carousel slides={slides} ratio="1/1" className="w-full" />

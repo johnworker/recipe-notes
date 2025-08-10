@@ -12,6 +12,7 @@ import IngredientList from "../components/IngredientList";
 import StepTimeline from "../components/StepTimeline";
 import ClipboardButton from "../components/ClipboardButton";
 import QRCodeButton from "../components/QRCodeButton";
+import AspectBox from "../components/AspectBox";
 
 import saladFallback from "../assets/images/salad.jpg";
 
@@ -159,11 +160,16 @@ export default function RecipeDetail() {
                 to={`/recipes/${r.id}`}
                 className="border rounded-xl overflow-hidden bg-white dark:bg-gray-800 dark:border-gray-700 hover:shadow transition"
               >
-                <img
-                  src={r.image}
-                  alt={r.title}
-                  className="w-full h-28 object-cover"
-                />
+                {/* ⬇⬇ 這裡改為 1:1 圖片 */}
+                <AspectBox>
+                  <img
+                    src={r.image}
+                    alt={r.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </AspectBox>
                 <div className="p-3">
                   <div className="font-semibold line-clamp-1">{r.title}</div>
                   <div className="text-xs text-gray-500">
