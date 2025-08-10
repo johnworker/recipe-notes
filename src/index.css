@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a {
+  text-decoration: none;
+}
+/* 容器 & 按鈕 & 卡片 */
+.container {
+  @apply mx-auto px-4;
+}
+/* 按鈕群 */
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-lg px-5 py-3 font-medium bg-blue-600 text-white hover:bg-blue-700 transition shadow;
+}
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-lg px-5 py-3 font-medium bg-green-600 text-white hover:bg-green-700 transition shadow;
+}
+.btn-ghost {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition;
+}
+/* 卡片與懸浮 */
+.card {
+  @apply border rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition;
+}
+/* 深色模式 */
+.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
+.dark .card {
+  @apply bg-gray-800 border-gray-700;
+}
+
+/* 小標題樣式（雜誌感） */
+.section-title {
+  @apply text-2xl font-extrabold tracking-tight mb-2;
+}
+.section-desc {
+  @apply text-gray-600 dark:text-gray-300 mb-6;
+}
+
+/* 捲動條美化（可省略） */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+/* Masonry（靈感牆）：利用 CSS columns + break-inside */
+.masonry {
+  column-count: 1;
+  column-gap: 1.25rem;
+}
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
+}
+@media (min-width: 640px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+@media (min-width: 1024px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+/* 印刷用（列印食譜） */
+@media print {
+  nav,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+
+/* Reveal 進場 */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal--in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 可愛漂浮帶：左右小幅度擺動＋緩慢上下 */
+@keyframes cute-float {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(-12px) translateX(6px) rotate(4deg);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(0);
+    opacity: 0.85;
+  }
+}
+.animate-cute-float {
+  animation: cute-float 4.5s ease-in-out infinite;
+}
+/* 按鈕小彈跳（可套在 :active） */
+.btn-bounce:active {
+  transform: translateY(1px) scale(0.98);
+  transition: transform 0.08s;
+}
+
+/* 輕量通用動畫與特效 */
+.hover-lift { transition: transform .25s, box-shadow .25s; }
+.hover-lift:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+@keyframes wiggle { 0%,100% { transform: rotate(0) } 50% { transform: rotate(1.5deg) } }
+.wiggle:hover { animation: wiggle .35s ease-in-out; }
+
+/* ==== 表單統一樣式 ==== */
+@layer components {
+  .form-field {
+    @apply w-full rounded-lg border px-3 py-2
+           bg-white text-gray-900 placeholder-gray-400 border-gray-300
+           focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:border-blue-500
+           disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+  .dark .form-field {
+    @apply bg-gray-800 text-gray-100 placeholder-gray-400 border-gray-600
+           focus:ring-blue-400/60 focus:border-blue-400;
+  }
+
+  .form-label {
+    @apply block mb-1 text-sm font-medium text-gray-700 dark:text-gray-200;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2
+           bg-green-600 text-white hover:bg-green-700 transition
+           focus:outline-none focus:ring-2 focus:ring-green-500/60;
+  }
+}
+
+/* 某些瀏覽器（特別是 Windows）對 option 的樣式繼承較保守，額外處理 */
+@layer base {
+  .dark option { color: #f3f4f6; background-color: #1f2937; } /* text-gray-100 / bg-gray-800 */
+}
+
+/* 建議加上 color-scheme，讓原生控件顏色更貼近深色 */
+:root { color-scheme: light dark; }
+
+/* 勾勾食材列表 */
+.ingredient-list .ingredient-bullet{
+  position:absolute; left:0.25rem; top:0.25rem;
+  width:1.35rem; height:1.35rem; line-height:1.35rem;
+  text-align:center; border-radius:9999px;
+  background:rgba(34,197,94,.12); /* green-500/12 */
+  color:#22c55e; font-size:0.85rem; font-weight:700;
+}
+
+/* 步驟時間線（左側數字圓點 + 直線） */
+.step-item{ position:relative; }
+.step-item::before{
+  content:""; position:absolute; left:14px; top:1.75rem; bottom:-1rem;
+  width:2px; background:rgba(148,163,184,.4); /* slate-400/40 */
+}
+.step-item:last-child::before{ display:none; }
+.step-dot{
+  width:28px; height:28px; border-radius:9999px;
+  display:grid; place-items:center; font-weight:700;
+  background:linear-gradient(180deg,#93c5fd 0%,#60a5fa 100%);
+  color:white; box-shadow:0 6px 16px rgba(59,130,246,.35);
+}
+
+/* 印出時隱藏不必要元素（可選） */
+@media print {
+  .no-print { display: none !important; }
+}
+/* 小膠囊在深色環境更清楚（StatPill 已有 base 樣式，這是微調） */
+@media (prefers-color-scheme: dark){
+  .backdrop-blur { backdrop-filter: blur(8px); }
+}
+
+@layer components{
+  .btn-ghost{
+    @apply inline-flex items-center gap-1 rounded-lg px-3 py-1.5 border
+           bg-white/70 dark:bg-gray-900/50 dark:border-gray-700
+           hover:bg-white transition;
+  }
+  .btn-secondary{
+    @apply inline-flex items-center gap-2 rounded-lg px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-700 transition;
+  }
+}

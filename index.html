@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <meta
+      name="description"
+      content="線上料理筆記與食譜平台：收藏、筆記、搜尋與標籤篩選。"
+    />
+    <meta property="og:title" content="料理筆記｜食譜平台" />
+    <meta
+      property="og:description"
+      content="用最直覺的方式管理你的私房料理。"
+    />
+    <title>線上料理筆記平台</title>
+
+    <script>
+  (function () {
+    var KEY = 'theme';
+    try {
+      var stored = localStorage.getItem(KEY);
+      var prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var dark = stored ? stored === 'dark' : prefers;
+      if (dark) document.documentElement.classList.add('dark');
+    } catch (e) {}
+  })();
+</script>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
