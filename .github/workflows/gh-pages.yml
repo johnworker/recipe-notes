@@ -11,27 +11,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Use Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
       - name: Install deps
         run: npm ci
 
-      # 若採用「環境變數控制 base」方案就打這行；若你在 vite.config.js 明寫 base，可刪掉這步
+      # 直接依賴 vite.config.js 的 base 設定
       - name: Build
         run: |
-          echo "VITE_BASE=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
           npm run build
-          # BrowserRouter 方案才需要；HashRouter 可留著也無妨
           cp dist/index.html dist/404.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}   # 內建就有，無須自行建立 PAT
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          force_orphan: true

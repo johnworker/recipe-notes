@@ -1,12 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-
-// 讓不同平台可覆寫 base（例如 GH Pages 需要子路徑）
-const base = process.env.VITE_BASE ?? '/'
-
+// GH Pages 會有這個環境變數，例如 "johnworker/recipe-notes"
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1]
+const isCI = !!process.env.GITHUB_ACTIONS
 
 export default defineConfig({
-  base,                // ex: '/recipe-notes/'（GH Pages）
+  base: isCI && repoName ? `/${repoName}/` : '/',  // GH Pages 自動帶 /recipe-notes/
   plugins: [react()],
 })
