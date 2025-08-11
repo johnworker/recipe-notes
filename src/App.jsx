@@ -11,23 +11,23 @@ import { RecipeProvider } from './context/RecipeProvider';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // 其它既有頁面可保留
-const Home = lazy(() => import('./pages/Home'));
-const Recipes = lazy(() => import('./pages/Recipes'));
-const RecipeDetail = lazy(() => import('./pages/RecipeDetail'));
-const Favorites = lazy(() => import('./pages/Favorites'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+import Home from './pages/Home';
+import Recipes from './pages/Recipes';
+import RecipeDetail from './pages/RecipeDetail';
+import Favorites from './pages/Favorites';
+import NotFound from './pages/NotFound';
 
 // ✅ 這三個一定要有
-const About = lazy(() => import('./pages/About'));
-const Notes = lazy(() => import('./pages/Notes'));
-const NoteEditor = lazy(() => import('./pages/NoteEditor'));
+import About from './pages/About.jsx';
+import Notes from './pages/Notes';
+import NoteEditor from './pages/NoteEditor.jsx';
 
 // ✅ 設定頁（之前你已建立）
-const Settings = lazy(() => import('./pages/Settings'));
+import Settings from './pages/Settings.jsx';
 
 // （可選）後台
-const RecipeForm = lazy(() => import('./pages/admin/RecipeForm'));
-const Login = lazy(() => import('./pages/Login'));
+import RecipeForm from'./pages/admin/RecipeForm';
+import Login from './pages/Login.jsx';
 
 export default function App() {
   return (
