@@ -2,14 +2,19 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]   # 你開發的預設分支
+    branches: [ main ]   # 你的預設分支
 
 permissions:
-  contents: write        # 讓 action 可以推 gh-pages
+  contents: write        # 允許把打包結果推到 gh-pages 分支
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,20 +23,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: Install deps
         run: npm ci
 
-      # 覆寫 Vite base：改為 /你的repo名/
       - name: Build
+        env:
+          # 讓 Vite base 變成 /<repo名>/，符合 GitHub Pages 子路徑
+          VITE_BASE: /${{ github.event.repository.name }}/
         run: |
-          export VITE_BASE=/${{ github.event.repository.name }}/
           npm run build
-          # 修復 SPA 重新整理 404：把 index.html 複製成 404.html
+          # SPA 刷新不 404：把 index.html 複製成 404.html
           cp dist/index.html dist/404.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          personal_token: ${{ secrets.GH_PAT }}   # ⬅️ 用你自建的 PAT
           publish_dir: ./dist
+          commit_message: "deploy: ${{ github.sha }}"
