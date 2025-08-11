@@ -4,6 +4,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ToastHost from './components/ToastHost';
+import BackToTop from "./components/BackToTop";
 
 import { AuthProvider } from './context/AuthProvider';
 import { UiStoreProvider } from './context/UiStore';
@@ -70,6 +71,7 @@ export default function App() {
           </RecipeProvider>
         </UiStoreProvider>
       </AuthProvider>
+      <BackToTop />
     </HashRouter>
   );
 }

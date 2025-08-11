@@ -10,6 +10,7 @@ import Carousel from "../components/Carousel";
 import Reveal from "../components/Reveal";
 import CuteBand from "../components/CuteBand";
 import CategoryCard from "../components/CategoryCard";
+import BackToTop from "../components/BackToTop";
 
 // 輪播用的三張圖（用你現有資產）
 import ramen from "../assets/images/ramen.jpg";
@@ -264,3 +265,5 @@ function CuteFloat() {
     </div>
   );
 }
+
+<BackToTop  />
