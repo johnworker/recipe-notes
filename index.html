@@ -22,16 +22,18 @@
     <title>線上料理筆記平台</title>
 
     <script>
-  (function () {
-    var KEY = 'theme';
-    try {
-      var stored = localStorage.getItem(KEY);
-      var prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var dark = stored ? stored === 'dark' : prefers;
-      if (dark) document.documentElement.classList.add('dark');
-    } catch (e) {}
-  })();
-</script>
+      (function () {
+        var KEY = "theme";
+        try {
+          var stored = localStorage.getItem(KEY);
+          var prefers =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var dark = stored ? stored === "dark" : prefers;
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body class="bg-gray-50 text-gray-800">
     <div id="root"></div>
