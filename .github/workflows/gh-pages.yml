@@ -1,0 +1,37 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]   # 你開發的預設分支
+
+permissions:
+  contents: write        # 讓 action 可以推 gh-pages
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: npm ci
+
+      # 覆寫 Vite base：改為 /你的repo名/
+      - name: Build
+        run: |
+          export VITE_BASE=/${{ github.event.repository.name }}/
+          npm run build
+          # 修復 SPA 重新整理 404：把 index.html 複製成 404.html
+          cp dist/index.html dist/404.html
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

@@ -3,6 +3,9 @@ recipe-notes/
 ├── package.json
 ├── tailwind.config.js
 ├── postcss.config.js
+├── .github/
+│   └── workflows/
+│       └── gh-pages.yml            # ← 用 GitHub Pages 就加它
 └── src/
     ├── assets/
     │   └── images/
