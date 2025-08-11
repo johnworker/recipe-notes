@@ -2,44 +2,36 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]   # 你的預設分支
+    branches: [ main ]
 
 permissions:
-  contents: write        # 允許把打包結果推到 gh-pages 分支
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Use Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: 'npm'
 
       - name: Install deps
         run: npm ci
 
+      # 若採用「環境變數控制 base」方案就打這行；若你在 vite.config.js 明寫 base，可刪掉這步
       - name: Build
-        env:
-          # 讓 Vite base 變成 /<repo名>/，符合 GitHub Pages 子路徑
-          VITE_BASE: /${{ github.event.repository.recipe-notes }}/
         run: |
+          echo "VITE_BASE=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
           npm run build
-          # SPA 刷新不 404：把 index.html 複製成 404.html
+          # BrowserRouter 方案才需要；HashRouter 可留著也無妨
           cp dist/index.html dist/404.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.GH_PAT }}   # ⬅️ 用你自建的 PAT
+          github_token: ${{ secrets.GITHUB_TOKEN }}   # 內建就有，無須自行建立 PAT
           publish_dir: ./dist
-          commit_message: "deploy: ${{ github.sha }}"
+          force_orphan: true

@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -31,7 +31,7 @@ const Login = lazy(() => import('./pages/Login'));
 
 export default function App() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <HashRouter>
       <AuthProvider>
         <UiStoreProvider>
           <RecipeProvider>
@@ -70,6 +70,6 @@ export default function App() {
           </RecipeProvider>
         </UiStoreProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
