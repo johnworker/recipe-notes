@@ -31,7 +31,7 @@ jobs:
       - name: Build
         env:
           # 讓 Vite base 變成 /<repo名>/，符合 GitHub Pages 子路徑
-          VITE_BASE: /${{ github.event.repository.name }}/
+          VITE_BASE: /${{ github.event.repository.recipe-notes }}/
         run: |
           npm run build
           # SPA 刷新不 404：把 index.html 複製成 404.html
