@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -26,12 +26,11 @@ jobs:
       - name: Build
         run: |
           npm run build
-          # SPA 在 GH Pages 重新整理避免 404（HashRouter 用不到，但保留無害）
-          cp dist/index.html dist/404.html
+          cp dist/index.html dist/404.html  # SPA 重新整理不 404
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}   # ← 用內建 token 就好
           publish_dir: ./dist
           force_orphan: true
