@@ -79,15 +79,6 @@ export default function Recipes() {
             <h1 className="text-2xl font-bold">所有食譜</h1>
             <p className="text-gray-600 dark:text-gray-300 text-sm">共 {filtered.length} 道（目前顯示 {paged.length} 道）</p>
           </div>
-          <div className="flex gap-2">
-            <SearchBar defaultValue={q} onSearch={onSearch} placeholder="輸入關鍵字（名稱 / 描述 / 標籤）" />
-            <select className="border rounded-lg px-3 py-2 bg-white dark:bg-gray-800" value={sort} onChange={onSortChange}>
-              <option value="title_asc">名稱 A→Z</option>
-              <option value="title_desc">名稱 Z→A</option>
-              <option value="newest">最新新增</option>
-              <option value="oldest">最早新增</option>
-            </select>
-          </div>
         </div>
       </Reveal>
 
