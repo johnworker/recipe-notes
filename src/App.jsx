@@ -45,7 +45,7 @@ export default function App() {
                 <Route path="/recipes/:id" element={<RecipeDetail />} />
                 <Route path="/favorites" element={<Favorites />} />
 
-                {/* ✅ 這三條是你現在缺的或名字不一致 */}
+                {/* 這三條是現在缺的或名字不一致 */}
                 <Route path="/about" element={<About />} />
                 <Route path="/notes" element={<Notes />} />
                 <Route path="/notes/edit" element={<NoteEditor />} />
